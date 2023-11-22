@@ -1,0 +1,12 @@
+.loanmanage .tablink {
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.loanmanage .tablink.active,
+.loanmanage .tablink:focus,
+.loanmanage .tablink:hover {
+  color: #f40000 !important;
+}

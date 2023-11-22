@@ -1,0 +1,12 @@
+.investmentpage .tablink {
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.investmentpage .tablink.active,
+.investmentpage .tablink:focus,
+.investmentpage .tablink:hover {
+  color: #f40000 !important;
+}

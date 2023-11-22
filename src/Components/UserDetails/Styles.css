@@ -1,0 +1,12 @@
+.createuserform .tablink {
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.createuserform .tablink.active,
+.createuserform .tablink:focus,
+.createuserform .tablink:hover {
+  color: #f40000 !important;
+}

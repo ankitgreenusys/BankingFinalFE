@@ -1,0 +1,37 @@
+.mainheader {
+  background: var(--darkcol);
+}
+
+.mainheader .comname {
+  font-size: 20px;
+  color: aliceblue;
+}
+
+.subnav {
+  background-color: var(--redcol);
+}
+
+.subnav .nav-link,
+.nav-link.active {
+  color: white !important;
+}
+
+.navbar-nav .dropdown-menu {
+  position: absolute;
+}
+
+.nav-link .avatar {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.nav-item .nav-link.active::after {
+  content: "\f0d8";
+  font: var(--fa-font-solid);
+  display: block;
+  position: absolute;
+  margin-left: 50px;
+  align-content: center;
+  margin-top: 6px;
+}

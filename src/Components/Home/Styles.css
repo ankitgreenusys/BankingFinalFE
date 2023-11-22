@@ -1,0 +1,59 @@
+.statscard {
+  /* height: 100px;
+   width: 100px;  */
+  background: red;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 0;
+  flex-basis: 20%;
+}
+
+.statscardcolor1 {
+  background-color: #ffe5e7;
+}
+
+.statscardcolor2 {
+  background-color: #f2f2f2;
+}
+
+.statscardbody {
+  padding: 20px 10px;
+}
+
+.statstitle {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.statsval {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.statsgrowth {
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.graphdem {
+  padding: 30px;
+  background-color: #f7f9fb;
+}
+
+.notisec {
+  font-family: "Sarabun";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.notilist {
+  list-style: none;
+}
+
+.notimes {
+  font-size: 14px;
+  font-weight: 300;
+  border-bottom: 1px solid rgba(232, 233, 236, 0.5);
+}

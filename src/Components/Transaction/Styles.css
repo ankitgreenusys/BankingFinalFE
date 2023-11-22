@@ -1,0 +1,41 @@
+.transpage input[type="radio"] {
+  position: absolute;
+  left: -9999px;
+}
+
+.transpage input[type="radio"] + label {
+  position: relative;
+  padding: 3px 0 0 40px;
+  cursor: pointer;
+}
+
+.transpage input[type="radio"] + label:before {
+  content: "";
+  background: #fff;
+  border: 2px solid var(--redcol);
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.transpage input[type="radio"] + label:after {
+  content: "";
+  background: var(--redcol);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  opacity: 0;
+  transform: scale(2);
+  transition: transform 0.3s linear, opacity 0.3s linear;
+}
+
+.transpage input[type="radio"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
