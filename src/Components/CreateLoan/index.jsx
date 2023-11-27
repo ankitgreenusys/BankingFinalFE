@@ -92,8 +92,12 @@ const Index = () => {
 
     if (formdata.loanproduct === "Simple Interest")
       url = "admin/loanSimpleInterest/";
-    else if (formdata.loanproduct === "Compound Interest")
+    else if (formdata.loanproduct === "Reducing Interest")
       url = "admin/loanReducingInterest/";
+    else if (formdata.loanproduct === "Compound Interest")
+      url = "admin/loanCompoundInterest/";
+
+    console.log(url);
 
     fetch(BaseURL + url + memdet._id, {
       method: "POST",
@@ -219,7 +223,8 @@ const Index = () => {
                   Simple Interest or Reducing Method
                 </option>
                 <option value="Simple Interest">Simple Interest</option>
-                <option value="Compound Interest">Reducing Method</option>
+                <option value="Compound Interest">Compound Interest</option>
+                <option value="Reducing Interest">Reducing Interest</option>
               </select>
             </div>
             <div className="d-flex my-2 justify-content-between">
