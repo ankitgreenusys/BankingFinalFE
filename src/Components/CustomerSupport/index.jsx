@@ -3,6 +3,7 @@ import "./Styles.css";
 import { useNavigate } from "react-router-dom";
 
 import BaseURL from "../../Api/BaseURL";
+import Modal from "./Modal";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Index = () => {
 
   const rendercommntable = () =>
     tickets.map((dta, idx) => (
-      <tr>
+      <tr key={dta._id}>
         <td>{idx + 1}.</td>
         <td>{dta?.user?.name}</td>
         <td colSpan={2}>{new Date(dta?.date).toLocaleString()}</td>
@@ -45,7 +46,9 @@ const Index = () => {
         </td>
         <td colSpan={2}>{dta?.user?.email}</td>
         <td>
-          <div className="btn btn-sm btn-blue">View Message</div>
+          <div className="">
+            <Modal dta={dta} />
+          </div>
         </td>
       </tr>
     ));
