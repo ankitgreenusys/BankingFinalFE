@@ -40,9 +40,6 @@ const Stats = () => {
             <p className="statstitle">Total Member</p>
             <div className="d-flex justify-content-between align-items-center">
               <p className="statsval m-0 p-0">{totalMember.toLocaleString()}</p>
-              <p className="statsgrowth m-0 p-0">
-                +11.01% <i className="fa-solid fa-arrow-trend-up"></i>
-              </p>
             </div>
           </div>
         </div>
@@ -51,9 +48,6 @@ const Stats = () => {
             <p className="statstitle">Total Loan</p>
             <div className="d-flex justify-content-between align-items-center">
               <p className="statsval m-0 p-0">{totalLoan.toLocaleString()}</p>
-              <p className="statsgrowth m-0 p-0">
-                +11.01% <i className="fa-solid fa-arrow-trend-up"></i>
-              </p>
             </div>
           </div>
         </div>
@@ -63,9 +57,6 @@ const Stats = () => {
             <div className="d-flex justify-content-between align-items-center">
               <p className="statsval m-0 p-0">
                 {totalInterest.toLocaleString()}
-              </p>
-              <p className="statsgrowth m-0 p-0">
-                +11.01% <i className="fa-solid fa-arrow-trend-up"></i>
               </p>
             </div>
           </div>
@@ -77,23 +68,18 @@ const Stats = () => {
               <p className="statsval m-0 p-0">
                 {yeildInvestment.toLocaleString()}
               </p>
-              <p className="statsgrowth m-0 p-0">
-                +11.01% <i className="fa-solid fa-arrow-trend-up"></i>
-              </p>
             </div>
           </div>
         </div>
-        <div className="statscard statscardcolor1">
+        {/* <div className="statscard statscardcolor1">
           <div className="statscardbody">
             <p className="statstitle">Total Member</p>
             <div className="d-flex justify-content-between align-items-center">
               <p className="statsval m-0 p-0">{totalMember.toLocaleString()}</p>
-              <p className="statsgrowth m-0 p-0">
-                +11.01% <i className="fa-solid fa-arrow-trend-up"></i>
-              </p>
+              
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
