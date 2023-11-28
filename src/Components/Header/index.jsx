@@ -78,7 +78,7 @@ const Index = (props) => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img className="avatar" src={Avapic} alt="" />
+                    <img className="avatar mx-2" src={Avapic} alt="" />
                     <span className="name">{name}</span>
                   </span>
                   <ul className="dropdown-menu">
