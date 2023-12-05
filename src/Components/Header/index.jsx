@@ -63,7 +63,8 @@ const Index = (props) => {
               <ul className="navbar-nav d-flex justify-content-between flex-row w-100">
                 <li className="nav-item">
                   <Link className="nav-link mx-3 bal" to="yourbalance">
-                    <i className="fa-solid fa-wallet"></i> ${balance}
+                    <i className="fa-solid fa-wallet"></i> $
+                    {balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Link>
                 </li>
                 {/* <li className="nav-item">

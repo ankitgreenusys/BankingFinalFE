@@ -71,15 +71,6 @@ const Stats = () => {
             </div>
           </div>
         </div>
-        {/* <div className="statscard statscardcolor1">
-          <div className="statscardbody">
-            <p className="statstitle">Total Member</p>
-            <div className="d-flex justify-content-between align-items-center">
-              <p className="statsval m-0 p-0">{totalMember.toLocaleString()}</p>
-              
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
