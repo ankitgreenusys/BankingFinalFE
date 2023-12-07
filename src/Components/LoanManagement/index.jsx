@@ -15,7 +15,6 @@ const Index = () => {
   }, []);
 
   const [arrLoanReq, setArrLoanReq] = React.useState([]);
-  const [arrLoanApp, setArrLoanApp] = React.useState([]);
   const [arrLoanPre, setArrLoanPre] = React.useState([]);
   const [currenttab, setCurrenttab] = React.useState(0);
 
@@ -42,9 +41,8 @@ const Index = () => {
         console.log(data);
         if (!data.error) {
           if (currenttab === 1) setArrLoanReq(data.loans);
-          else if (currenttab === 2) setArrLoanApp(data.loans);
           else if (currenttab === 3) setArrLoanPre(data.loans);
-        } 
+        }
         // else {
         //   alert("Error");
         // }
@@ -95,25 +93,6 @@ const Index = () => {
     );
   };
 
-  const renderloanapptable = () =>
-    arrLoanApp.map((dta, idx) => (
-      <tr key={idx}>
-        <td>{idx + 1}.</td>
-        <td>{dta.user.name}</td>
-        <td>{dta.interest}</td>
-        <td>${dta.amount}</td>
-        <td>{dta.term} Months</td>
-        <td>
-          <div className="btn btn-sm btn-blue">
-            <Link className="nav-link" to={`history/${dta._id}`}>
-              View Details
-            </Link>
-          </div>
-        </td>
-        <td></td>
-      </tr>
-    ));
-
   const renderloanpretable = () =>
     arrLoanPre.map((dta, idx) => (
       <tr>
@@ -123,6 +102,7 @@ const Index = () => {
         <td>${dta.amount}</td>
         <td>{dta.term} Months</td>
         <td>{dta.totalAmount}</td>
+        <td>{dta.status}</td>
         <td>
           <div className="btn btn-sm btn-blue">
             <Link className="nav-link" to={`history/${dta._id}`}>
@@ -173,7 +153,8 @@ const Index = () => {
         console.log(data);
         if (!data.error) {
           alert("Loan Denied");
-          setCurrenttab(3);}
+          setCurrenttab(3);
+        }
         // } else alert("Error");
       })
       .catch((err) => console.log(err));
@@ -189,7 +170,7 @@ const Index = () => {
           >
             Loan Requests
           </span>
-          
+
           <span
             onClick={() => handletabs(3)}
             className={"nav-link tablink " + (currenttab === 3 ? "active" : "")}
@@ -215,6 +196,7 @@ const Index = () => {
                   <th>Loan Amount</th>
                   <th>Durations</th>
                   <th>Total Amount</th>
+                  <th>Status</th>
                   <th></th>
                   <th></th>
                 </tr>
