@@ -2,7 +2,6 @@ import React from "react";
 import "./Styles.css";
 
 import { useParams, Link, useNavigate } from "react-router-dom";
-import exportFromJSON from "export-from-json";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 

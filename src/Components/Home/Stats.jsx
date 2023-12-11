@@ -3,17 +3,17 @@ import React from "react";
 import BaseURL from "../../Api/BaseURL";
 
 const Stats = () => {
-  const [totalMember, setTotalMember] = React.useState(0);
-  const [totalLoan, setTotalLoan] = React.useState(0);
-  const [totalInterest, setTotalInterest] = React.useState(0);
-  const [yeildInvestment, setYeildInvestment] = React.useState(0);
   const [alltime, setAlltime] = React.useState({
     totalmember: 0,
     totalloan: 0,
     totalinterest: 0.0,
     totalyield: 0,
   });
-  const [loansdet, setLoansdet] = React.useState({});
+  const [loansdet, setLoansdet] = React.useState({
+    todayloan: 0,
+    todayloanrepayment: 0,
+    outStandingLoan: 0,
+  });
 
   React.useEffect(() => {
     if (localStorage.getItem("token"))
