@@ -115,8 +115,8 @@ const Index = () => {
           ele.date.split("T")[1].split(".")[0],
           ele.transactionId,
           ele.transactionType,
-          ele.transactionType !== "LoanRepayment" ? ele.amount : "",
-          ele.transactionType === "LoanRepayment" ? ele.amount : "",
+          ele.transactionType !== "Investment" ? ele.amount : "",
+          ele.transactionType === "Investment" ? ele.amount : "",
           ele.balance,
         ]);
       });
