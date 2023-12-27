@@ -70,9 +70,9 @@ const Index = () => {
             <td>{idx + 1}.</td>
             <td>{dt.user.name}</td>
             <td>{dt.interest}</td>
-            <td>${dt.amount}</td>
+            <td>$ {dt.amount.toLocaleString()}</td>
             <td>{dt.term} Months</td>
-            <td>{dt.totalAmount}</td>
+            <td>$ {dt.totalAmount.toLocaleString()}</td>
             <td className="d-flex justify-content-between">
               <div
                 onClick={() => approveloan(dt._id)}
@@ -99,9 +99,9 @@ const Index = () => {
         <td>{idx + 1}.</td>
         <td>{dta.user.name}</td>
         <td>{dta.interest}</td>
-        <td>${dta.amount}</td>
+        <td>$ {dta.amount.toLocaleString()}</td>
         <td>{dta.term} Months</td>
-        <td>{dta.totalAmount}</td>
+        <td>$ {dta.totalAmount.toLocaleString()}</td>
         <td>{dta.status}</td>
         <td>
           <div className="btn btn-sm btn-blue">

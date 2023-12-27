@@ -55,21 +55,21 @@ const Index = () => {
       "Time",
       "Transaction ID",
       "Amount",
-      "Method",
+      "Type",
       "Status",
     ];
 
     const data = [];
-    const total = investment?.investment?.length;
+    const total = investment?.length;
 
-    investment?.investment?.map((dta, idx) => {
+    investment?.map((dta, idx) => {
       data.push([
         idx + 1,
         dta?.date.split("T")[0].split("-").reverse().join("-"),
         dta?.date.split("T")[1].split(".")[0],
-        Math.floor(100000000 + Math.random() * 900000000),
+        dta?.transactionId,
         dta?.amount,
-        dta?.savingProfit,
+        dta?.transactionType,
         "Paid",
       ]);
     });
@@ -116,17 +116,17 @@ const Index = () => {
   // };
 
   const renderloanhistable = () =>
-    investment?.investment ? (
-      investment.investment.map((dta, idx) => (
+    investment ? (
+      investment.map((dta, idx) => (
         <tr>
           <td>{idx + 1}.</td>
           <td>
             {dta?.date.split("T")[0].split("-").reverse().join("-")} ,{" "}
             {dta?.date.split("T")[1].split(".")[0]}
           </td>
-          <td>{Math.floor(100000000 + Math.random() * 900000000)}</td>
+          <td>{dta?.transactionId}</td>
           <td>$ {dta?.amount}</td>
-          <td>{dta?.savingProduct}</td>
+          <td>{dta?.transactionType}</td>
           <td className="">Paid</td>
         </tr>
       ))
@@ -169,7 +169,7 @@ const Index = () => {
                   <th>Date & Time</th>
                   <th>Transaction ID</th>
                   <th>Amount</th>
-                  <th>Saving Product</th>
+                  <th>Type</th>
                   <th>Status</th>
                 </tr>
               </thead>

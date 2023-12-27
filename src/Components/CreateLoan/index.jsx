@@ -3,6 +3,8 @@ import "./Styles.css";
 import { useNavigate } from "react-router-dom";
 
 import BaseURL from "../../Api/BaseURL";
+// import SelectSearch from "react-select-search";
+import SearchableDropdown from "./SearchableDropdown";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const Index = () => {
     loanterm: "",
     repaymentfrequency: "",
   });
-  const [selectuser, setSelectuser] = React.useState(0);
+  const [selectuser, setSelectuser] = React.useState("");
   const [memdet, setMemdet] = React.useState({});
   const [loandtails, setLoandtails] = React.useState({});
   const [paymentmethod, setPaymentmethod] = React.useState("cash");
@@ -50,8 +52,9 @@ const Index = () => {
   };
 
   React.useEffect(() => {
+    console.log(selectuser?.split(" - ")[0]);
     if (selectuser) {
-      setMemdet(userlist.find((dt) => dt._id == selectuser));
+      setMemdet(userlist.find((dt) => dt._id == selectuser?.split(" - ")[0]));
     }
   }, [selectuser]);
 
@@ -159,7 +162,7 @@ const Index = () => {
             <h5>Member Details</h5>
             <div className="d-flex flex-column">
               <label className="mt-3">Member ID</label>
-              <select
+              {/* <select
                 onChange={(e) => setSelectuser(e.target.value)}
                 className="p-2 mb-3"
                 disabled={selmem}
@@ -174,7 +177,32 @@ const Index = () => {
                     </option>
                   ) : null
                 )}
-              </select>
+              </select> */}
+
+              {/* <SelectSearch
+                options={userlist.map((dt, idx) => ({
+                  name: dt._id + " - " + dt.name,
+                  value: dt._id,
+                }))}
+                search
+                value={selectuser}
+                onChange={(e) => setSelectuser(e)}
+                placeholder="Search member ID"
+                // disabled={selmem}
+                className="form-control w-100" 
+              /> */}
+              <SearchableDropdown
+                options={userlist.map((dt, idx) => ({
+                  name: dt._id + " - " + dt.name,
+                  value: dt._id,
+                }))}
+                value={selectuser}
+                label="name"
+                placeholder="Search member ID"
+                selectedVal={selectuser}
+                handleChange={(e) => setSelectuser(e)}
+                disabled={selmem}
+              />
             </div>
             <div className="d-flex my-2 justify-content-between">
               <div className="d-flex flex-column">

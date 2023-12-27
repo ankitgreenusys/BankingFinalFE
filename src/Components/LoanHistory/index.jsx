@@ -16,8 +16,6 @@ const Index = () => {
   const [totpaid, setTotpaid] = React.useState(0);
   const [totremain, setTotremain] = React.useState(0);
 
-
-
   const [currenttab, setCurrenttab] = React.useState(1);
   const handletabs = (id) => {
     setCurrenttab(id);
@@ -63,21 +61,6 @@ const Index = () => {
     const data = [];
     const total = arrLoan?.repaymenttransactionId?.length;
 
-    // data.push(header);
-    data.push([
-      1,
-      arrLoan?.giventransactionId?.date
-        .split("T")[0]
-        .split("-")
-        .reverse()
-        .join("-"),
-      arrLoan?.giventransactionId?.date.split("T")[1].split(".")[0],
-      arrLoan?.giventransactionId?.transactionId,
-      arrLoan?.giventransactionId?.amount,
-      arrLoan?.modeOfPayment,
-      arrLoan?.giventransactionId?.remark,
-    ]);
-
     arrLoan?.repaymenttransactionId?.map((dta, idx) => {
       data.push([
         idx + 2,
@@ -90,7 +73,7 @@ const Index = () => {
       ]);
     });
 
-    doc.text("Loan History", 14, 15);
+    // doc.text("Loan History", 14, 15);
 
     doc.text("Total Paid: " + totpaid, 14, 15 + total * 10);
     doc.text("Total Remaining: " + totremain, 14, 15 + total * 10 + 5);
@@ -136,27 +119,28 @@ const Index = () => {
     exportFromJSON({ data, fileName, exportType });
   };
 
-  const rendergivenloanhistable = () => {
-    return;
-    <tr>
-      <td>1.</td>
-      <td>
-        {arrLoan?.giventransactionId?.date
-          .split("T")[0]
-          .split("-")
-          .reverse()
-          .join("-")}
-        {", "}
-        {arrLoan?.giventransactionId?.date.split("T")[1].split(".")[0]}
-      </td>
-      <td>{arrLoan?.giventransactionId?.transactionId}</td>
-      <td>$ {arrLoan?.giventransactionId?.amount}</td>
-      <td>{arrLoan?.modeOfPayment}</td>
-      <td className="">{arrLoan?.giventransactionId?.remark}</td>
-    </tr>;
+  // const rendergivenloanhistable = () => {
+  //   return (
+  //     <tr>
+  //       <td>1.</td>
+  //       <td>
+  //         {arrLoan?.giventransactionId?.date
+  //           .split("T")[0]
+  //           .split("-")
+  //           .reverse()
+  //           .join("-")}
+  //         {", "}
+  //         {arrLoan?.giventransactionId?.date.split("T")[1].split(".")[0]}
+  //       </td>
+  //       <td>{arrLoan?.giventransactionId?.transactionId}</td>
+  //       <td>$ {arrLoan?.giventransactionId?.amount}</td>
+  //       <td>{arrLoan?.modeOfPayment}</td>
+  //       <td className="">{arrLoan?.giventransactionId?.remark}</td>
+  //     </tr>
+  //   );
 
-    // );
-  };
+  //   // );
+  // };
 
   const renderloanhistable = () => {
     return arrLoan?.loanDetails?.length != 0 ? (
@@ -170,9 +154,9 @@ const Index = () => {
                 dta.date.split("T")[1].split(".")[0]
               : "-"}
           </td>
-          <td>$ {Math.round(dta.interestPayment * 100) / 100}</td>
-          <td>$ {Math.round(dta.principalPayment * 100) / 100}</td>
-          <td>{dta.totalPayment}</td>
+          <td>$ {(Math.round(dta.interestPayment * 100) / 100).toLocaleString()}</td>
+          <td>$ {(Math.round(dta.principalPayment * 100) / 100).toLocaleString()}</td>
+          <td>$ {dta.totalPayment.toLocaleString()}</td>
         </tr>
       ))
     ) : (
@@ -211,9 +195,10 @@ const Index = () => {
           <div className="btn btn-sm btn-dark me-3" onClick={exportToPDF}>
             Export
           </div>
-          <div className="btn btn-sm btn-green">Total Paid $ {totpaid}</div>
+          <div className="btn btn-sm btn-red me-2">{arrLoan.status}</div>
+          <div className="btn btn-sm btn-green">Total Paid $ {totpaid.toLocaleString()}</div>
           <div className="btn btn-sm btn-red ms-2">
-            Remaining Amount $ {totremain}
+            Remaining Amount $ {totremain.toLocaleString()}
           </div>
         </div>
       </div>
@@ -238,7 +223,7 @@ const Index = () => {
               <thead></thead>
               <tbody>
                 {renderloanhistable()}
-                {rendergivenloanhistable()}
+                {/* {rendergivenloanhistable()} */}
               </tbody>
             </table>
           </div>

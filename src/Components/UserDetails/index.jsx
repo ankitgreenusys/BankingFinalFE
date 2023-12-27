@@ -55,9 +55,15 @@ const Index = () => {
           setInvesTrans(data.InvestTransaction);
           setLoanTrans(data.loanTransaction);
           setStats({
-            totaldeposit: data.totaldeposit,
-            balance: data.balance,
-            totalwithdraw: data.totalwithdraw,
+            totaldeposit: data.totaldeposit
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            balance: data.balance
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            totalwithdraw: data.totalwithdraw
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
           });
         })
         .catch((err) => {
@@ -85,15 +91,26 @@ const Index = () => {
 
       data1 = [];
 
+      let balance = 0;
+
       loanTrans.map((ele, index) => {
+        if (ele.transactionType === "LoanRepayment") {
+          balance += ele.amount;
+        } else {
+          balance -= ele.amount;
+        }
         data1.push([
           ele.date.split("T")[0].split("-").reverse().join("-"),
           ele.date.split("T")[1].split(".")[0],
           ele.transactionId,
           ele.transactionType,
-          ele.transactionType !== "LoanRepayment" ? ele.amount : "",
-          ele.transactionType === "LoanRepayment" ? ele.amount : "",
-          ele.balance,
+          ele.transactionType === "LoanRepayment"
+            ? ele.amount.toLocaleString()
+            : "",
+          ele.transactionType !== "LoanRepayment"
+            ? ele.amount.toLocaleString()
+            : "",
+          balance.toLocaleString(),
         ]);
       });
     } else if (currenttab == 2) {
@@ -108,16 +125,23 @@ const Index = () => {
       ];
 
       data1 = [];
+      let balance = 0;
 
       invesTrans.map((ele, index) => {
+        if (ele.transactionType === "Investment") {
+          balance += ele.amount;
+        } else {
+          balance -= ele.amount;
+        }
+
         data1.push([
           ele.date.split("T")[0].split("-").reverse().join("-"),
           ele.date.split("T")[1].split(".")[0],
           ele.transactionId,
           ele.transactionType,
-          ele.transactionType !== "Investment" ? ele.amount : "",
-          ele.transactionType === "Investment" ? ele.amount : "",
-          ele.balance,
+          ele.transactionType === "Investment" ? ele.amount.toLocaleString() : "",
+          ele.transactionType !== "Investment" ? ele.amount.toLocaleString() : "",
+          balance.toLocaleString(),
         ]);
       });
     } else {
@@ -150,7 +174,7 @@ const Index = () => {
         </td>
         <td>{dt.transactionId}</td>
         <td>{dt.transactionType}</td>
-        <td>{dt.amount}</td>
+        <td>{dt.amount.toLocaleString()}</td>
       </tr>
     ));
 
@@ -165,7 +189,7 @@ const Index = () => {
         </td>
         <td>{dt.transactionId}</td>
         <td>{dt.transactionType}</td>
-        <td>{dt.amount}</td>
+        <td>{dt.amount?.toLocaleString()}</td>
       </tr>
     ));
 
@@ -208,7 +232,8 @@ const Index = () => {
           <div className="">
             <p>Submitted Documents</p>
             <h6>
-              <i className="fa-solid fa-file-invoice"></i> Profile ID Card <br />
+              <i className="fa-solid fa-file-invoice"></i> Profile ID Card{" "}
+              <br />
               <a target="_blank" rel="noreferrer" href={user?.image}>
                 View
               </a>

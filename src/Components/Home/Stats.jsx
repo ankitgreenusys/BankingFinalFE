@@ -4,10 +4,14 @@ import BaseURL from "../../Api/BaseURL";
 
 const Stats = () => {
   const [alltime, setAlltime] = React.useState({
-    totalmember: 0,
+    totalOutstandingInv: 0,
+    totalinterest: 0,
+    totalinvested: 0,
     totalloan: 0,
-    totalinterest: 0.0,
-    totalyield: 0,
+    totalmember: 0,
+    totalpaid: 0,
+    totalpending: 0,
+    totalwithdrawn: 0,
   });
   const [loansdet, setLoansdet] = React.useState({
     todayloan: 0,
@@ -25,12 +29,17 @@ const Stats = () => {
       })
         .then((res) => res.json())
         .then((res) => {
+          console.log(res);
           if (!res.error) {
             setAlltime({
-              totalmember: res.totalmember,
+              totalOutstandingInv: res.totalOutstandingInv,
+              totalinterest: res.totalinterest,
+              totalinvested: res.totalinvested,
               totalloan: res.totalloan,
-              totalinterest: res.totalinterest.toFixed(2),
-              totalyield: res.totalyield,
+              totalmember: res.totalmember,
+              totalpaid: res.totalpaid,
+              totalpending: res.totalpending,
+              totalwithdrawn: res.totalwithdrawn,
             });
           }
           // else alert(res.resposneMessage);
@@ -141,7 +150,7 @@ const Stats = () => {
               <p className="statstitle">Yield of the investment</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
-                  {alltime.totalyield.toLocaleString()}
+                  {alltime.totalinvested.toLocaleString()}
                 </p>
               </div>
             </div>
@@ -177,6 +186,51 @@ const Stats = () => {
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
                   {loansdet.outStandingLoan?.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="">
+        <h3 className="">Investment</h3>
+        <div className="d-flex justify-content-between flex-wrap">
+          <div className="statscard statscardcolor1">
+            <div className="statscardbody">
+              <p className="statstitle">Total</p>
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="statsval m-0 p-0">
+                  {alltime.totalinvested.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="statscard statscardcolor2">
+            <div className="statscardbody">
+              <p className="statstitle">Total Interest</p>
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="statsval m-0 p-0">
+                  {alltime.totalinterest?.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="statscard statscardcolor1">
+            <div className="statscardbody">
+              <p className="statstitle">Total Outstanding Loan</p>
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="statsval m-0 p-0">
+                  {alltime.totalOutstandingInv?.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="statscard statscardcolor2">
+            <div className="statscardbody">
+              <p className="statstitle">Total Withdraw</p>
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="statsval m-0 p-0">
+                  {alltime.totalwithdrawn?.toLocaleString()}
                 </p>
               </div>
             </div>

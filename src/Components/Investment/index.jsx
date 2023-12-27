@@ -118,7 +118,7 @@ const Index = () => {
         <td>{dta?.user.name}</td>
         <td colSpan={2}>{dta._id}</td>
         <td>{dta?.createdAt.split("T")[0].split("-").reverse().join("-")}</td>
-        <td>{dta.amount}</td>
+        <td>{dta.amount.toLocaleString()}</td>
         <td className="d-flex justify-content-between">
           <div
             onClick={() => approvewithdraw(dta._id)}
@@ -151,7 +151,7 @@ const Index = () => {
                 .reverse()
                 .join("-")}
         </td>
-        <td>{dta.balance}</td>
+        <td>{dta.balance.toLocaleString()}</td>
         <td>
           <div className="btn btn-sm btn-blue">
             <Link className="nav-link" to={"history/" + dta._id}>

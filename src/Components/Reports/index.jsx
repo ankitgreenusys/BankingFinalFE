@@ -63,7 +63,7 @@ const Index = () => {
               ele.userId._id,
               ele.userId.name,
               ele.transactionId,
-              ele.amount,
+              ele.amount.toLocaleString(),
               ele.remark,
             ]);
           });

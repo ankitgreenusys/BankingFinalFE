@@ -51,7 +51,7 @@ const Index = () => {
         </td>
         <td>{dta.transactionId}</td>
         <td>{dta.transactionType}</td>
-        <td>{dta.amount}</td>
+        <td>{dta.amount.toLocaleString()}</td>
       </tr>
     ));
 
@@ -115,10 +115,10 @@ const Index = () => {
         </div>
         <div className="d-flex justify-content-around mt-2">
           <div className="btn btn-blue">
-            Total Deposit <br /> ${totaldeposit}
+            Total Deposit <br /> ${totaldeposit.toLocaleString()}
           </div>
           <div className="btn btn-red">
-            Total Withdraw <br /> ${totalwithdraw}
+            Total Withdraw <br /> ${totalwithdraw.toLocaleString()}
           </div>
         </div>
       </div>

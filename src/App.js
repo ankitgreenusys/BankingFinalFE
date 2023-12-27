@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import 'react-select-search/style.css'
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./Components/Header";
@@ -17,7 +18,7 @@ import Payment from "./Components/InvestmentHistory/Payment";
 import Transaction from "./Components/Transaction";
 import Reports from "./Components/Reports";
 import CustomerSupport from "./Components/CustomerSupport";
-import YourBalance from "./Components/YourBalance";
+// import YourBalance from "./Components/YourBalance";
 import ResetPassword from "./Components/ResetPassword";
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/customersupport" element={<CustomerSupport />} />
-          <Route path="/yourbalance" element={<YourBalance />} />
+          {/* <Route path="/yourbalance" element={<YourBalance />} /> */}
         </Route>
         <Route path="/resetpassword/:id" element={<ResetPassword />} />
       </Routes>

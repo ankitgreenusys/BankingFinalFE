@@ -61,12 +61,12 @@ const Index = (props) => {
           {islogin && (
             <div>
               <ul className="navbar-nav d-flex justify-content-between flex-row w-100">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link className="nav-link mx-3 bal" to="yourbalance">
                     <i className="fa-solid fa-wallet"></i> $
                     {balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </Link>
-                </li>
+                </li> */}
                 {/* <li className="nav-item">
                   <a className="nav-link mx-3" href="#">
                     <i className="fa-solid fa-gear"></i> Setting

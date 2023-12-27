@@ -38,8 +38,8 @@ const Index = () => {
         <td>{idx + 1}.</td>
         <td>{dta?.userId?.name}</td>
         <td colSpan={2}>
-          {/* 22 Jan 23, 21:24 */}
-          {new Date(dta?.date).toLocaleString()}
+          22 Jan 23, 21:24
+          {/* {new Date(dta?.date).toLocaleString()} */}
         </td>
         <td colSpan={2}>{dta?.transactionId}</td>
         <td>{dta?.transactionType}</td>
