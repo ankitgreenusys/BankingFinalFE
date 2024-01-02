@@ -57,7 +57,7 @@ const Index = (props) => {
           }
           data-bs-theme="dark"
         >
-          <div className="comname">Banking Committee App</div>
+          <div className="comname">Crowd Banking App</div>
           {islogin && (
             <div>
               <ul className="navbar-nav d-flex justify-content-between flex-row w-100">

@@ -15,6 +15,7 @@ const Index = () => {
   const [arrLoan, setArrLoan] = React.useState([]);
   const [totpaid, setTotpaid] = React.useState(0);
   const [totremain, setTotremain] = React.useState(0);
+  const [transdta, setTransdta] = React.useState([]);
 
   const [currenttab, setCurrenttab] = React.useState(1);
   const handletabs = (id) => {
@@ -35,11 +36,12 @@ const Index = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.loanTransaction);
         if (!data.error) {
           setArrLoan(data.loan);
           setTotpaid(data.totalpaid);
           setTotremain(data.remaining);
+          setTransdta(data.loanTransaction);
         } else alert("Error");
       })
       .catch((err) => console.log(err));
@@ -49,34 +51,37 @@ const Index = () => {
 
   const filldata = () => {
     const header = [
-      "S. No.",
       "Date",
       "Time",
       "Transaction ID",
+      "Type",
+      "Repayment",
       "Amount",
-      "Method",
-      "Status",
+      "balance",
     ];
 
     const data = [];
-    const total = arrLoan?.repaymenttransactionId?.length;
 
-    arrLoan?.repaymenttransactionId?.map((dta, idx) => {
+    transdta.map((ele, index) => {
       data.push([
-        idx + 2,
-        dta.date.split("T")[0].split("-").reverse().join("-"),
-        dta.date.split("T")[1].split(".")[0],
-        dta.giventransactionId ? dta.giventransactionId.transactionId : "-",
-        dta.amount,
-        dta.modeofpayment,
-        dta.remark,
+        ele.date.split("T")[0].split("-").reverse().join("-"),
+        ele.date.split("T")[1].split(".")[0],
+        ele.transactionId,
+        ele.transactionType,
+        ele.transactionType === "LoanRepayment"
+          ? ele.amount.toLocaleString()
+          : "",
+        ele.transactionType !== "LoanRepayment"
+          ? ele.amount.toLocaleString()
+          : "",
+        ele.balance.toLocaleString(),
       ]);
     });
 
     // doc.text("Loan History", 14, 15);
 
-    doc.text("Total Paid: " + totpaid, 14, 15 + total * 10);
-    doc.text("Total Remaining: " + totremain, 14, 15 + total * 10 + 5);
+    // doc.text("Total Paid: " + totpaid, 14, 15 + total * 10);
+    // doc.text("Total Remaining: " + totremain, 14, 15 + total * 10 + 5);
     doc.autoTable({
       head: [header],
       body: data,
@@ -154,8 +159,12 @@ const Index = () => {
                 dta.date.split("T")[1].split(".")[0]
               : "-"}
           </td>
-          <td>$ {(Math.round(dta.interestPayment * 100) / 100).toLocaleString()}</td>
-          <td>$ {(Math.round(dta.principalPayment * 100) / 100).toLocaleString()}</td>
+          <td>
+            $ {(Math.round(dta.interestPayment * 100) / 100).toLocaleString()}
+          </td>
+          <td>
+            $ {(Math.round(dta.principalPayment * 100) / 100).toLocaleString()}
+          </td>
           <td>$ {dta.totalPayment.toLocaleString()}</td>
         </tr>
       ))
@@ -196,7 +205,9 @@ const Index = () => {
             Export
           </div>
           <div className="btn btn-sm btn-red me-2">{arrLoan.status}</div>
-          <div className="btn btn-sm btn-green">Total Paid $ {totpaid.toLocaleString()}</div>
+          <div className="btn btn-sm btn-green">
+            Total Paid $ {totpaid.toLocaleString()}
+          </div>
           <div className="btn btn-sm btn-red ms-2">
             Remaining Amount $ {totremain.toLocaleString()}
           </div>

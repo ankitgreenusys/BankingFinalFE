@@ -39,3 +39,16 @@
   opacity: 1;
   transform: scale(1);
 }
+
+.transpage .tablink {
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.transpage .tablink.active,
+.transpage .tablink:focus,
+.transpage .tablink:hover {
+  color: #f40000 !important;
+}

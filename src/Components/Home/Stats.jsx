@@ -40,6 +40,8 @@ const Stats = () => {
               totalpaid: res.totalpaid,
               totalpending: res.totalpending,
               totalwithdrawn: res.totalwithdrawn,
+              investmentInterest : res.investmentInterest,
+              totalinterestLoan : res.totalinterestLoan
             });
           }
           // else alert(res.resposneMessage);
@@ -140,14 +142,14 @@ const Stats = () => {
               <p className="statstitle">Total Interest</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
-                  {alltime.totalinterest?.toLocaleString()}
+                  {alltime.totalinterestLoan?.toLocaleString()}
                 </p>
               </div>
             </div>
           </div>
           <div className="statscard statscardcolor2">
             <div className="statscardbody">
-              <p className="statstitle">Yield of the investment</p>
+              <p className="statstitle">Total Investment</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
                   {alltime.totalinvested.toLocaleString()}
@@ -160,9 +162,19 @@ const Stats = () => {
       <div className="">
         <h3 className="">Loans </h3>
         <div className="d-flex justify-content-between flex-wrap">
+          <div className="statscard statscardcolor2">
+            <div className="statscardbody">
+              <p className="statstitle">Total Repayment Loan</p>
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="statsval m-0 p-0">
+                  {alltime.totalpaid?.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="statscard statscardcolor1">
             <div className="statscardbody">
-              <p className="statstitle">Today</p>
+              <p className="statstitle">All active loan</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
                   {loansdet.todayloan?.toLocaleString()}
@@ -172,7 +184,7 @@ const Stats = () => {
           </div>
           <div className="statscard statscardcolor2">
             <div className="statscardbody">
-              <p className="statstitle">Today Repayment Loan</p>
+              <p className="statstitle">Active Loan Repayment</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
                   {loansdet.todayloanrepayment?.toLocaleString()}
@@ -182,7 +194,7 @@ const Stats = () => {
           </div>
           <div className="statscard statscardcolor1">
             <div className="statscardbody">
-              <p className="statstitle">Total Outstanding Loan</p>
+              <p className="statstitle">Active Loan Repayment Remaining</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
                   {loansdet.outStandingLoan?.toLocaleString()}
@@ -210,14 +222,16 @@ const Stats = () => {
               <p className="statstitle">Total Interest</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
-                  {alltime.totalinterest?.toLocaleString()}
+                  {alltime.investmentInterest?.toLocaleString()}
                 </p>
               </div>
             </div>
           </div>
           <div className="statscard statscardcolor1">
             <div className="statscardbody">
-              <p className="statstitle">Total Outstanding Loan</p>
+              <p className="statstitle">
+                Total active investment <br />(with interset)
+              </p>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="statsval m-0 p-0">
                   {alltime.totalOutstandingInv?.toLocaleString()}

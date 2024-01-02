@@ -110,7 +110,7 @@ const Index = () => {
           ele.transactionType !== "LoanRepayment"
             ? ele.amount.toLocaleString()
             : "",
-          balance.toLocaleString(),
+          ele.balance.toLocaleString(),
         ]);
       });
     } else if (currenttab == 2) {
@@ -127,7 +127,7 @@ const Index = () => {
       data1 = [];
       let balance = 0;
 
-      invesTrans.map((ele, index) => {
+      invesTrans?.map((ele, index) => {
         if (ele.transactionType === "Investment") {
           balance += ele.amount;
         } else {

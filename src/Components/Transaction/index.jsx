@@ -19,6 +19,9 @@ const Index = () => {
   const [totalprofit, setTotalprofit] = React.useState(0);
   const [totaldeposit, setTotaldeposit] = React.useState(0);
   const [totalwithdraw, setTotalwithdraw] = React.useState(0);
+  const [currenttab, setCurrenttab] = React.useState(1);
+  const [loanTrans, setLoanTrans] = React.useState([]);
+  const [invesTrans, setInvesTrans] = React.useState([]);
 
   React.useEffect(() => {
     fetch(BaseURL + "admin/gettransaction/" + option, {
@@ -32,6 +35,8 @@ const Index = () => {
         console.log(res);
         if (!res.error) {
           setTranslist(res.transactions);
+          setInvesTrans(res.InvestTransaction);
+          setLoanTrans(res.loanTransaction);
           setTotalprofit(res.totalprofit);
           setTotaldeposit(res.totaldeposit);
           setTotalwithdraw(res.totalwithdraw);
@@ -40,18 +45,33 @@ const Index = () => {
       .catch((err) => console.log(err));
   }, [option]);
 
-  const rendercommntable = () =>
-    translist.map((dta, idx) => (
+  const renderinvestable = () =>
+    invesTrans.map((dt, idx) => (
       <tr key={idx}>
-        <td>{idx}.</td>
-        <td>{dta.userId.name}</td>
+        <td>{idx + 1}.</td>
         <td>
-          {dta.date.split("T")[0].split("-").reverse().join("-")} ,{" "}
-          {dta.date.split("T")[1].split(".")[0]}
+          {dt.date?.split("T")[0].split("-").reverse().join("-") +
+            ", " +
+            dt.date?.split("T")[1].split(".")[0]}
         </td>
-        <td>{dta.transactionId}</td>
-        <td>{dta.transactionType}</td>
-        <td>{dta.amount.toLocaleString()}</td>
+        <td>{dt.transactionId}</td>
+        <td>{dt.transactionType}</td>
+        <td>{dt.amount.toLocaleString()}</td>
+      </tr>
+    ));
+
+  const renderloantable = () =>
+    loanTrans.map((dt, idx) => (
+      <tr key={idx}>
+        <td>{idx + 1}.</td>
+        <td>
+          {dt.date?.split("T")[0].split("-").reverse().join("-") +
+            ", " +
+            dt.date?.split("T")[1].split(".")[0]}
+        </td>
+        <td>{dt.transactionId}</td>
+        <td>{dt.transactionType}</td>
+        <td>{dt.amount?.toLocaleString()}</td>
       </tr>
     ));
 
@@ -123,7 +143,26 @@ const Index = () => {
         </div>
       </div>
       <div className="recenttrans mt-5">
-        <h6>Recent Transactions</h6>
+        <h6 className="mt-5 d-flex justify-content-between align-items-center">
+          <nav className="nav me-auto">
+            <span
+              onClick={() => setCurrenttab(1)}
+              className={
+                "nav-link tablink " + (currenttab === 1 ? "active" : "")
+              }
+            >
+              Loan History
+            </span>
+            <span
+              onClick={() => setCurrenttab(2)}
+              className={
+                "nav-link tablink " + (currenttab === 2 ? "active" : "")
+              }
+            >
+              Investment History
+            </span>
+          </nav>
+        </h6>
         <div className="commntable mt-3">
           <section>
             <div className="tbl-header">
@@ -131,7 +170,6 @@ const Index = () => {
                 <thead>
                   <tr>
                     <th>S. No.</th>
-                    <th>User Name</th>
                     <th>Date & Time</th>
                     <th>Transaction ID</th>
                     <th>Type</th>
@@ -143,14 +181,20 @@ const Index = () => {
             <div className="tbl-content">
               <table cellPadding="0" cellSpacing="0" border="0">
                 <tbody>
-                  {translist.length > 0 ? (
-                    rendercommntable()
-                  ) : (
+                  {currenttab == 1 ? (
+                    loanTrans.length === 0 ? (
+                      <tr>
+                        <td colSpan="5">No Transactions</td>
+                      </tr>
+                    ) : (
+                      renderloantable()
+                    )
+                  ) : invesTrans.length === 0 ? (
                     <tr>
-                      <td colSpan="6" className="text-center">
-                        No Data Found
-                      </td>
+                      <td colSpan="5">No Transactions</td>
                     </tr>
+                  ) : (
+                    renderinvestable()
                   )}
                 </tbody>
               </table>

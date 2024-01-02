@@ -50,27 +50,34 @@ const Index = () => {
 
   const filldata = () => {
     const header = [
-      "S. No.",
       "Date",
       "Time",
       "Transaction ID",
-      "Amount",
       "Type",
-      "Status",
+      "Deposit",
+      "Withdraw",
+      "balance",
     ];
 
     const data = [];
     const total = investment?.length;
+    let balance = 0;
 
-    investment?.map((dta, idx) => {
+    investment?.map((ele, index) => {
+      if (ele.transactionType !== "Withdraw") {
+        balance += ele.amount;
+      } else {
+        balance -= ele.amount;
+      }
+
       data.push([
-        idx + 1,
-        dta?.date.split("T")[0].split("-").reverse().join("-"),
-        dta?.date.split("T")[1].split(".")[0],
-        dta?.transactionId,
-        dta?.amount,
-        dta?.transactionType,
-        "Paid",
+        ele.date.split("T")[0].split("-").reverse().join("-"),
+        ele.date.split("T")[1].split(".")[0],
+        ele.transactionId,
+        ele.transactionType,
+        ele.transactionType !== "Withdraw" ? ele.amount.toLocaleString() : "",
+        ele.transactionType === "Withdraw" ? ele.amount.toLocaleString() : "",
+        balance.toLocaleString(),
       ]);
     });
 

@@ -220,7 +220,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="usersec mt-5">
+      {/* <div className="usersec mt-5">
         <h6>User Accounts Report</h6>
         <div className="w-50 mt-4">
           <div className="d-flex justify-content-between">
@@ -273,7 +273,7 @@ const Index = () => {
             Export
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
